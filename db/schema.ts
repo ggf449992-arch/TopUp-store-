@@ -1,0 +1,3 @@
+import { int, mysqlEnum, mysqlTable, timestamp, varchar } from "drizzle-orm/mysql-core";
+export const packages = mysqlTable("packages",{id:int("id").autoincrement().primaryKey(),gems:int("gems").notNull(),priceUSD:int("priceUSD").notNull(),itemId:varchar("itemId",{length:50}).notNull(),provider:mysqlEnum("provider",["smileone","codashop"]).notNull()});
+export const orders = mysqlTable("orders",{id:int("id").autoincrement().primaryKey(),playerId:varchar("playerId",{length:50}).notNull(),packageId:int("packageId").notNull(),gems:int("gems").notNull(),priceUSD:int("priceUSD").notNull(),status:mysqlEnum("status",["pending","processing","completed","failed"]).default("pending").notNull(),createdAt:timestamp("createdAt").defaultNow()});
